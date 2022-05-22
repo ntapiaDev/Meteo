@@ -51,11 +51,25 @@ function callAPI(lat, long) {
         roundedTempInThreeHours = document.querySelector('.threeHoursTemp');
         roundedTempInThreeHours.textContent = Math.round(apiResults.hourly[3].temp);
 
+        //Température des 5 prochaines heures :
+        fiveHoursTemp = document.querySelectorAll('.fiveHoursTemp');
+        for(let i = 0; i < fiveHoursTemp.length; i++) {
+            fiveHoursTemp[i].textContent = apiResults.hourly[i + 1].temp;
+        }
+
         //La météo dans 2 jours :
         weatherInTwoDays = document.querySelector('.weatherInTwoDays');
         weatherInTwoDays.textContent = apiResults.daily[2].weather[0].description;
 
+        weatherInTwoDaysImg = document.querySelector('.weatherInTwoDays-img');
 
+        //On récupère l'heure actuelle (*1000 car résultat en millisecondes)
+        let time = new Date(apiResults.current.dt * 1000).getHours();
+        if (time >= 6 && time < 21) {
+            weatherInTwoDaysImg.src = `./assets/img/day/${apiResults.daily[2].weather[0].icon}.svg`;
+        } else {
+            weatherInTwoDaysImg.src = `./assets/img/night/${apiResults.daily[2].weather[0].icon}.svg`;
+        }
 
 
 
