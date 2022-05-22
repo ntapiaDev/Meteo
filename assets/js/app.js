@@ -63,7 +63,7 @@ function callAPI(lat, long) {
 
         weatherInTwoDaysImg = document.querySelector('.weatherInTwoDays-img');
 
-        //On récupère l'heure actuelle (*1000 car résultat en millisecondes)
+        //On récupère l'heure actuelle (timestamp * 1000 car JS gère les dates en millisecondes)
         let time = new Date(apiResults.current.dt * 1000).getHours();
         if (time >= 6 && time < 21) {
             weatherInTwoDaysImg.src = `./assets/img/day/${apiResults.daily[2].weather[0].icon}.svg`;
@@ -72,6 +72,7 @@ function callAPI(lat, long) {
         }
 
 
+        console.log("date :" + Date.now());
 
     });
 }
