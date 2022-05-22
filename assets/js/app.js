@@ -72,7 +72,8 @@ function callAPI(lat, long) {
         }
 
 
-        console.log("date :" + Date.now());
+
+
 
     });
 }
